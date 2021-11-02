@@ -6,15 +6,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Do the build
-        run: sleep -s 2
+        run: sleep 2
 
   deploy:
+    needs: [build]
     runs-on: ubuntu-latest
     steps:
       - name: Do the deploy
-        run: sleep -s 1
+        run: sleep 1
 
   post:
+    needs: [build, deploy]
     if: always()
     runs-on: ubuntu-latest
     steps:
