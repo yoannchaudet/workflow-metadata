@@ -14,11 +14,10 @@ jobs:
     steps:
       - name: Do the deploy
         run: sleep 1
-
-  post:
-    needs: [build, deploy]
-    if: always()
-    runs-on: ubuntu-latest
-    steps:
       - name: Telemetry
-        run: echo "telemetry here"
+        if: always()
+        run: |
+          curl --request POST \
+          --url https://api.github.com/repos/${{ github.repository_owner }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}/jobs \
+          --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
+          --fail
