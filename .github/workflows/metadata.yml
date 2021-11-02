@@ -18,6 +18,6 @@ jobs:
         if: always()
         run: |
           curl --request GET \
-          --url https://api.github.com/repos/${{ github.repository_owner }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}/jobs \
+          --url https://api.github.com/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/attempts/${{ github.run_attempt }}/jobs \
           --header 'authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' \
           --fail
