@@ -1,0 +1,21 @@
+name: pages build and deployment
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do the build
+        run: sleep -s 2
+
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Do the deploy
+        run: sleep -s 1
+
+  post:
+    if: always()
+    steps:
+      - name: Telemetry
+        run: echo "telemetry here"
